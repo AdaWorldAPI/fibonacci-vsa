@@ -4,6 +4,7 @@
 // No ML. No weights. Only mathematics against compile-time constants.
 
 pub mod zeckengold;
+pub mod signed;
 
 use std::f64::consts::PI;
 use ndarray::{Array1, Array2, ArrayView1};
