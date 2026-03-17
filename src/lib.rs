@@ -3,27 +3,30 @@
 //
 // No ML. No weights. Only mathematics against compile-time constants.
 
+pub mod zeckengold;
+
 use std::f64::consts::PI;
 use ndarray::{Array1, Array2, ArrayView1};
-
-pub mod signed;
 
 // ─── COMPILE-TIME CONSTANTS ───────────────────────────────────────────
 // These exist in .rodata, not at runtime. The compiler knows them.
 
 /// Golden ratio φ = (1 + √5) / 2
-const PHI: f64 = 1.618_033_988_749_895;
+pub const PHI: f64 = 1.618_033_988_749_895;
 
 /// Euler-Mascheroni constant γ — the bridge between discrete and continuous
-const GAMMA: f64 = 0.577_215_664_901_532_9;
+pub const GAMMA: f64 = 0.577_215_664_901_532_9;
 
 /// ln(φ) — natural log of golden ratio, used for scale mapping  
-const LN_PHI: f64 = 0.481_211_825_059_603_4;
+pub const LN_PHI: f64 = 0.481_211_825_059_603_4;
+
+/// Golden angle in radians = 2π/φ² ≈ 137.508°
+pub const GOLDEN_ANGLE: f64 = 2.0 * PI / (PHI * PHI);
 
 /// Fibonacci lookup table — all 93 values that fit in u64
 /// This is the entire skeleton of the space. Compile-time constant.
 pub const FIB_LEN: usize = 87;
-const FIB: [u64; FIB_LEN] = {
+pub const FIB: [u64; FIB_LEN] = {
     let mut table = [0u64; FIB_LEN];
     table[0] = 1;
     table[1] = 2;
@@ -39,7 +42,7 @@ const FIB: [u64; FIB_LEN] = {
 /// This is where γ bends the space — it maps discrete Fibonacci positions
 /// to continuous spiral coordinates with gravitational curvature
 #[inline]
-fn harmonic(n: f64) -> f64 {
+pub fn harmonic(n: f64) -> f64 {
     if n <= 0.0 {
         return 0.0;
     }
