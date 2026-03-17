@@ -6,6 +6,8 @@
 use std::f64::consts::PI;
 use ndarray::{Array1, Array2, ArrayView1};
 
+pub mod signed;
+
 // ─── COMPILE-TIME CONSTANTS ───────────────────────────────────────────
 // These exist in .rodata, not at runtime. The compiler knows them.
 
