@@ -4,7 +4,7 @@ version = "0.2.0"
 edition = "2021"
 
 [dependencies]
-ndarray = "0.16"
+ndarray = { git = "https://github.com/AdaWorldAPI/ndarray.git", branch = "master" }
 rand = "0.8"
 
 [profile.release]
